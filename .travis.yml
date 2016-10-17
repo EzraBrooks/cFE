@@ -1,0 +1,10 @@
+language: c
+before_install:
+ - sudo apt-get -qq update
+ - sudo apt-get install -y gcc-multilib g++-multilib
+before_script: 
+ - rm -rf osal/
+ - wget http://downloads.sourceforge.net/project/osal/osal-4.2.1a-release.tar.gz
+ - tar -xf osal-4.2.1a-release.tar.gz
+ - mv osal-4.2.1a-release osal
+script: source setvars.sh && cd $CFS_MISSION/build/cpu1 && make clean && make config && make

@@ -39,7 +39,11 @@
 #===============================================================================
 
 # List of apps/libs to include in the build
-THE_APPS := sample_lib sample_app
+ifeq ($(THE_APPS), "")
+    THE_APPS := sample_lib sample_app
+else
+    THE_APPS += sample_lib sample_app
+endif
 THE_APPS += ci_lab to_lab sch_lab
 # THE_APPS += cfs_lib
 # THE_APPS += cf cs ds fm hk hs lc md mm sc sch

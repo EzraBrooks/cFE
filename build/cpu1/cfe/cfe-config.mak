@@ -29,7 +29,7 @@ OS = posix
 ##---------------------------------------------------------
 ## PSP -- CFE Platform Support Package
 ##---------------------------------------------------------
-PSP = pc-linux
+PSP = rpi-linux
 
 ##---------------------------------------------------------
 ## BSP -- OSAL BSP/Operating system for the board

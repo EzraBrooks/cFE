@@ -417,7 +417,7 @@ void CFE_PSP_DeleteResetArea(void)
 **  Return:
 **    (none)
 */
-int32 CFE_PSP_GetResetArea (void *PtrToResetArea, uint32 *SizeOfResetArea)
+int32 CFE_PSP_GetResetArea (cpuaddr *PtrToResetArea, uint32 *SizeOfResetArea)
 {
    int32 return_code;
    
@@ -542,7 +542,7 @@ void CFE_PSP_DeleteUserReservedArea(void)
 **  Return:
 **    (none)
 */
-int32 CFE_PSP_GetUserReservedArea(void *PtrToUserArea, uint32 *SizeOfUserArea )
+int32 CFE_PSP_GetUserReservedArea(cpuaddr *PtrToUserArea, uint32 *SizeOfUserArea )
 {
    int32 return_code;
    
@@ -607,7 +607,7 @@ int32 CFE_PSP_InitVolatileDiskMem(uint32 RestartType )
 **  Return:
 **    (none)
 */
-int32 CFE_PSP_GetVolatileDiskMem(void *PtrToVolDisk, uint32 *SizeOfVolDisk )
+int32 CFE_PSP_GetVolatileDiskMem(cpuaddr *PtrToVolDisk, uint32 *SizeOfVolDisk )
 {
    int32 return_code;
    
@@ -718,7 +718,7 @@ void CFE_PSP_DeleteProcessorReservedMemory(void)
 **  Return:
 **    (none)
 */
-int32 CFE_PSP_GetKernelTextSegmentInfo(void *PtrToKernelSegment, uint32 *SizeOfKernelSegment)
+int32 CFE_PSP_GetKernelTextSegmentInfo(cpuaddr *PtrToKernelSegment, uint32 *SizeOfKernelSegment)
 {
    /*
    ** Prevent warnings by referencing parameters
@@ -746,7 +746,7 @@ int32 CFE_PSP_GetKernelTextSegmentInfo(void *PtrToKernelSegment, uint32 *SizeOfK
 **  Return:
 **    (none)
 */
-int32 CFE_PSP_GetCFETextSegmentInfo(void *PtrToCFESegment, uint32 *SizeOfCFESegment)
+int32 CFE_PSP_GetCFETextSegmentInfo(cpuaddr *PtrToCFESegment, uint32 *SizeOfCFESegment)
 {
    int32 return_code;
    uint32 Address;

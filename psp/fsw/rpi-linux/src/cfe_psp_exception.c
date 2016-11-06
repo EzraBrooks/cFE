@@ -61,8 +61,8 @@ char                       CFE_PSP_ExceptionReasonString[256];
 **
 */
 
-void CFE_ES_ProcessCoreException(uint32  HostTaskId,     uint8 *ReasonString, 
-                                 uint32 *ContextPointer, uint32 ContextSize);                                   
+void CFE_ES_ProcessCoreException(uint32  HostTaskId,     const char *ReasonString, 
+                                 const uint32 *ContextPointer, uint32 ContextSize);                                   
                                    
 /*
 **

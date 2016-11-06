@@ -36,7 +36,7 @@ ARCH_OPTS =
 ## Application specific compiler switches 
 ##
 ifeq ($(BUILD_TYPE),CFE_APP)
-   APP_COPTS= 
+   APP_COPTS= -fPIC
    APP_ASOPTS=
 else
    APP_COPTS=

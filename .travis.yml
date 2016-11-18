@@ -1,11 +1,11 @@
 language: c
 # Install dependencies for cross-compiling to ARM
 addons:
-	apt:
-		packages:
-			 - gcc-multilib
-			 - gcc-arm-linux-gnueabihf
-			 - g++-arm-linux-gnueabihf
+    apt:
+        packages:
+             - gcc-multilib
+             - gcc-arm-linux-gnueabihf
+             - g++-arm-linux-gnueabihf
 # Get OSAL from sourceforge and extract it so cFE can use it
 before_script:
  - rm -rf osal/

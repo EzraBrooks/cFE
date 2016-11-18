@@ -1,11 +1,20 @@
 language: c
-before_install:
- - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
- - sudo apt-get -qq update
- - sudo apt-get install -y gcc-multilib g++-multilib gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
-before_script: 
+# Install dependencies for cross-compiling to ARM
+addons:
+	apt:
+		packages:
+			 - gcc-multilib
+			 - gcc-arm-linux-gnueabihf
+			 - g++-arm-linux-gnueabihf
+# Get OSAL from sourceforge and extract it so cFE can use it
+before_script:
  - rm -rf osal/
  - wget http://downloads.sourceforge.net/project/osal/osal-4.2.1a-release.tar.gz
  - tar -xf osal-4.2.1a-release.tar.gz
  - mv osal-4.2.1a-release osal
-script: source setvars.sh && cd $CFS_MISSION/build/cpu1 && make clean && make config && make
+script:
+ - source setvars.sh
+ - cd $CFS_MISSION/build/cpu1
+ - make clean
+ - make config
+ - make

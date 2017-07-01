@@ -6,9 +6,6 @@ addons:
              - gcc-multilib
              - gcc-arm-linux-gnueabihf
              - g++-arm-linux-gnueabihf
-# Get OSAL from sourceforge and extract it so cFE can use it
-before_script:
- - git submodule update --init
 script:
  - source setvars.sh
  - cd $CFS_MISSION/build/cpu1

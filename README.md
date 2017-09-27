@@ -1,6 +1,5 @@
 # core Flight Executive (cFE) 
-## Open Source Release Readme
-## cFE Release 6.5.0 
+## Open Source Release Readme: cFE Release 6.5.0 
 
 Date: June 7, 2016
 
@@ -20,49 +19,31 @@ Introduction:
 
  The Core Flight Executive consists of the following subsystems:
   - Executive Services - initializes and controls applications
-  - Software Bus - A publish and subscribe messaging system based
-                   on CCSDS command and telemetry packets
+  - Software Bus - A publish and subscribe messaging system based on CCSDS command and telemetry packets
   - Time Services - Manages system time
   - Event Services - Event reporting and logging services for applications
   - Table Services - Data/parameter load and update services for applications  
 
- The Core Flight Executive is intended to host a suite of applications
- and libraries. A small subset of the applications and libraries are included in 
- this distribution. A set of lab applications provide a means of scheduling the 
- cFS system, as well as, commanding and receiving telemetry. A sample library 
- and sample application are included to help verify that the build and runtime 
- are configured correctly.
+ The Core Flight Executive is intended to host a suite of applications and libraries. A small subset of the applications and libraries are included in this distribution. A set of lab applications provide a means of scheduling the cFS system, as well as, commanding and receiving telemetry. A sample library and sample application are included to help verify that the build and runtime are configured correctly.
 
-Release Notes:
+## Release Notes:
 
 cFE Release 6.5.0 does NOT support the following system requirements:
 
-cES1515.1 "If the creation of the operating system object fails, the cFE shall 
-           perform a power on reset."
+**cES1515.1**
+> If the creation of the operating system object fails, the cFE shall perform a power on reset.
 
-The cause of this requirement failure is due to a failure to call the 
-`CFE_PSP_Restart` function from the `CFE_ES_CreateObjects` function when the return 
-from `OS_TaskCreate != OS_SUCCESS` (`cfe_es_start.c`, line 865).  Instead the 
-`CFE_PSP_Panic` function is being called (`cfe_es_start.c`, line 882).  The 
-`CFE_PSP_Panic` function makes a call to exit(-1), resulting in termination of the 
-cFS system vs. a power on reset.  This failure will be addressed in the next
-release of the cFE.  It should be noted that the current behavior is consistent
-with previous releases of the cFE.  There are two workarounds to this failure:
+The cause of this requirement failure is due to a failure to call the `CFE_PSP_Restart` function from the `CFE_ES_CreateObjects` function when the return from `OS_TaskCreate != OS_SUCCESS` ([cfe_es_start.c](cfe/fsw/cfe-core/src/es/cfe_es_start.c), line 865).  Instead the `CFE_PSP_Panic` function is being called ([cfe_es_start.c](cfe/fsw/cfe-core/src/es/cfe_es_start.c), line 882).  The `CFE_PSP_Panic` function makes a call to `exit(-1)`, resulting in termination of the cFS system vs. a power on reset. This failure will be addressed in the next release of the cFE.  It should be noted that the current behavior is consistent with previous releases of the cFE. There are two workarounds to this failure:
 
-   1. Replace the call to `CFE_PSP_Panic` (`cfe_es_start.c`, line 882) with a call
-      to `CFE_PSP_Restart(CFE_PSP_RST_TYPE_POWERON)`. 
+   1. Replace the call to `CFE_PSP_Panic` ([cfe_es_start.c](cfe/fsw/cfe-core/src/es/cfe_es_start.c), line 882) with a call to `CFE_PSP_Restart(CFE_PSP_RST_TYPE_POWERON)`. 
 
    2. Update the `CFE_PSP_Panic` function to perform the desired behavior.
 
-cES1702.3 "If the CPU exception was caused by the Operating System or cFE Core 
-           then the cFE shall initiate a <PLATFORM_DEFINED> response."
+**cES1702.3**
+> If the CPU exception was caused by the Operating System or cFE Core then the cFE shall initiate a <PLATFORM_DEFINED> response.
 
-In the previous release of the cFE (version 6.4.2), this requirement was being
-satisfied via the PSP making a call to the cFE platform defined exception 
-handling function.  Changes to the PSP (PSP version 1.3.0) resulted in the 
-failure of this requirement. cFE requirements must be satisfied by the cFE.  
-This failure will be addressed in the next release of the cFE.  To workaround 
-this failure:
+In the previous release of the cFE (version 6.4.2), this requirement was being satisfied via the PSP making a call to the cFE platform defined exception handling function.  Changes to the PSP (PSP version 1.3.0) resulted in the 
+failure of this requirement. cFE requirements must be satisfied by the cFE. This failure will be addressed in the next release of the cFE. To workaround this failure:
 
 Replace the call to `CFE_ES_ProcessCoreException` (`cfe_psp_exception.c`, line 155) 
 with:
@@ -79,8 +60,8 @@ variable `CFE_ES_EXCEPTION_FUNCTION` defined in the `cFE_platform_cfg.h` file wi
 need to be updated to call the desired function.
   
 
-cES1703.3 "If the Floating Point exception was caused by the OS or cFE Core then 
-           the cFE shall initiate a <PLATFORM_DEFINED> response."
+**cES1703.3**
+> If the Floating Point exception was caused by the OS or cFE Core then the cFE shall initiate a <PLATFORM_DEFINED> response.
 
 In the previous release of the cFE (version 6.4.2), this requirement was being
 satisfied via the PSP making a call to the cFE platform defined exception 

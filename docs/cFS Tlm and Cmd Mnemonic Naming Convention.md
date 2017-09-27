@@ -1,3 +1,5 @@
+<p align="right">January 15, 2010</p>
+
 # CFS Telemetry and Command Mnemonic Naming Convention
 
 ### Purpose
